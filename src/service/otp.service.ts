@@ -25,7 +25,9 @@ export class OtpService {
       receiver,
       this.sender,
     );
-    await this.client.messages.create(whatsappMessage);
+    const response = await this.client.messages.create(whatsappMessage);
+    if (response.errorCode)
+      throw new Error(`${response.errorCode}: ${response.errorMessage}`);
   }
 
   public generate(): number {
