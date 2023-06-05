@@ -2,13 +2,13 @@ import { OtpService } from '../service/otp.service';
 import { Controller, Post, Body, HttpCode } from '@nestjs/common';
 import { SendOtpDto } from '../dto/sendOtp.dto';
 
-@Controller()
+@Controller('otp')
 export class OtpController {
   private readonly otpService: OtpService;
   public constructor(otpService: OtpService) {
     this.otpService = otpService;
   }
-  @Post()
+  @Post('send')
   @HttpCode(201)
   public async sendOtp(@Body() body: SendOtpDto): Promise<string> {
     let response: string;
